@@ -685,7 +685,7 @@
     }
 
     return `
-      <div class="flex flex-col gap-1">${lines.join("")}</div>
+      <div class="inline-flex flex-col items-start gap-1">${lines.join("")}</div>
     `;
   };
 
