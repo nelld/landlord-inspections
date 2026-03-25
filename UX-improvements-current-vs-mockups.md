@@ -179,12 +179,18 @@ Current screenshots: `...11_23_AM.png`, `...11_24_AM.png`, `...11_24_AM (1).png`
 
 - **Table simplification and scanability**
   - Remove the redundant "Details" column.
-  - Merge "Standard" + "Criteria" into **Standard / Criteria** (standard is text; "View criteria" opens a modal).
-  - Keep **Attachments** separate from **Proof** (landlord uploads proof; attachments are inspection-provided).
-  - Remove **Responsibility** column (to avoid confusion and because landlord task is proof upload regardless).
-  - Narrow **Due**, **Observation**, and **Notes** columns; standardize cell padding.
-  - Notes are always shown inline with **read more** expansion.
-  - **Why**: reduces width/scroll and keeps the most actionable info visible.
+  - Keep the default table row focused on scan-first fields only: checkbox, **Due**, **Location**, **Standard / Criteria**, and **Status**.
+  - Add a leading expand/collapse control per row.
+  - Move long-form and secondary details into an inline expandable detail row beneath each deficiency:
+    - **Observation**
+    - **Notes**
+    - **Responsibility**
+    - **Attachments**
+    - **Proof**
+    - Rejection feedback link when applicable
+  - Keep **Standard / Criteria** merged, with "View criteria" opening a modal.
+  - Notes continue to support inline **read more** expansion within the expanded detail panel.
+  - **Why**: preserves fast scanning in the main grid, reduces wrapping, and still keeps full deficiency details in context.
 
 - **Due/timeframe correctness**
   - Ensure the "24 hours" timeframe does not display contradictory "due in 2 days".

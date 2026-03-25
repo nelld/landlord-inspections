@@ -275,7 +275,8 @@
             <table class="w-full border-collapse text-left text-sm">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
-                  <th class="w-10 px-3 py-3 font-semibold">
+                  <th class="w-10 px-3 py-3 font-semibold" aria-label="Expand row"></th>
+                  <th class="selectColumn w-10 px-3 py-3 font-semibold">
                     <input
                       id="selectAllIssues"
                       type="checkbox"
@@ -286,17 +287,24 @@
                   <th class="w-28 px-3 py-3 font-semibold">Due</th>
                   <th class="px-3 py-3 font-semibold">Location</th>
                   <th class="px-3 py-3 font-semibold">Standard / Criteria</th>
-                  <th class="w-40 px-3 py-3 font-semibold">Observation</th>
-                  <th class="w-40 px-3 py-3 font-semibold">Notes</th>
-                  <th class="px-3 py-3 font-semibold">Attachments</th>
-                  <th class="px-3 py-3 font-semibold">Status</th>
-                  <th class="px-3 py-3 font-semibold">Proof</th>
+                  <th class="statusColumn px-3 py-3 font-semibold">Status</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200">
                 <!-- Rejected deficiency: row 1 -->
-                <tr class="hover:bg-slate-50" data-status="5" data-due-iso="2026-01-23" data-location="Inside">
-                  <td class="w-10 px-3 py-3">
+                <tr class="issueMainRow hover:bg-slate-50" data-row-id="issue-1" data-expanded="false" data-status="5" data-due-iso="2026-01-23" data-location="Inside">
+                  <td class="w-10 px-3 py-3 align-top">
+                    <button
+                      type="button"
+                      class="issueExpandBtn inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-1"
+                      aria-label="Expand deficiency 1 details"
+                    >
+                      <i class="fa-solid fa-chevron-right text-xs transition-transform" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn w-10 px-3 py-3">
                     <input
                       type="checkbox"
                       class="issueCheckbox h-4 w-4 rounded border-slate-300 text-brand-600"
@@ -327,45 +335,70 @@
                       View criteria
                     </button>
                   </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    Fire labeled door is missing.
-                  </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    <div class="notesWrap text-sm text-slate-700" data-notes-full="No Fire label door."></div>
-                  </td>
-                  <td class="px-3 py-3 align-top">
-                    <button
-                      class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
-                      type="button"
-                    >
-                      View (1)
-                    </button>
-                  </td>
-                  <td class="px-3 py-3">
+                  <td class="statusColumn px-3 py-3">
                     <div class="flex flex-col items-start gap-1.5">
                       <span class="inline-flex items-center gap-2 rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">
                         <span class="h-2 w-2 rounded-full bg-rose-500"></span>
                         Rejected
                       </span>
-                      <button
-                        type="button"
-                        class="rejectionNotesBtn text-xs font-semibold text-brand-700 hover:text-brand-600"
-                        data-rejection-notes="Uploaded photo does not clearly show the fire label on the door. Please retake the photo with the label visible and in focus."
-                      >
-                        <i class="fa-solid fa-comment-dots mr-1" aria-hidden="true"></i>View rejection notes
-                      </button>
                     </div>
                   </td>
-                  <td class="px-3 py-3">
-                    <button class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
-                      View (1)
-                    </button>
+                </tr>
+                <tr id="issue-detail-1" class="issueDetailRow hidden bg-slate-50/70">
+                  <td colspan="6" class="issueDetailCell px-4 py-4">
+                    <div class="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+                      <div class="mb-3 flex flex-wrap items-center gap-2">
+                        <div class="inline-flex items-center gap-2 rounded-md bg-slate-50 px-3 py-2 text-xs">
+                          <span class="font-semibold uppercase tracking-wide text-slate-500">Responsibility</span>
+                          <span class="font-medium text-slate-900">Owner</span>
+                        </div>
+                        <button
+                          class="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                          type="button"
+                        >
+                          Attachments (1)
+                        </button>
+                        <button class="proofBlock rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
+                          Proof (1)
+                        </button>
+                        <button
+                          type="button"
+                          class="rejectionNotesBtn rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-700 hover:bg-rose-100"
+                          data-rejection-notes="Uploaded photo does not clearly show the fire label on the door. Please retake the photo with the label visible and in focus."
+                        >
+                          <i class="fa-solid fa-comment-dots mr-1" aria-hidden="true"></i>Rejected feedback
+                        </button>
+                      </div>
+                      <div class="grid gap-3 lg:grid-cols-2">
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Observation</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">Fire labeled door is missing.</div>
+                        </section>
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Notes</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">
+                            <div class="notesWrap" data-notes-full="No Fire label door."></div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
                 <!-- Proof required: row 2 -->
-                <tr class="hover:bg-slate-50" data-status="1" data-due-iso="2026-01-28" data-location="Unit">
-                  <td class="w-10 px-3 py-3">
+                <tr class="issueMainRow hover:bg-slate-50" data-row-id="issue-2" data-expanded="false" data-status="1" data-due-iso="2026-01-28" data-location="Unit">
+                  <td class="w-10 px-3 py-3 align-top">
+                    <button
+                      type="button"
+                      class="issueExpandBtn inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-2"
+                      aria-label="Expand deficiency 2 details"
+                    >
+                      <i class="fa-solid fa-chevron-right text-xs transition-transform" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn w-10 px-3 py-3">
                     <input
                       type="checkbox"
                       class="issueCheckbox h-4 w-4 rounded border-slate-300 text-brand-600"
@@ -396,34 +429,62 @@
                       View criteria
                     </button>
                   </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    Natural gas, propane, or oil leak.
-                  </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    <div class="notesWrap text-sm text-slate-700" data-notes-full="There is a gas leak behind the stove."></div>
-                  </td>
-                  <td class="px-3 py-3 align-top">
-                    <button
-                      class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
-                      type="button"
-                    >
-                      View (1)
-                    </button>
-                  </td>
-                  <td class="px-3 py-3">
+                  <td class="statusColumn px-3 py-3">
                     <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-800">
                       <span class="h-2 w-2 rounded-full bg-amber-500"></span>
                       Proof required
                     </span>
                   </td>
-                  <td class="px-3 py-3">
-                    <span class="text-xs text-slate-500">None</span>
+                </tr>
+                <tr id="issue-detail-2" class="issueDetailRow hidden bg-slate-50/70">
+                  <td colspan="6" class="issueDetailCell px-4 py-4">
+                    <div class="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+                      <div class="mb-3 flex flex-wrap items-center gap-2">
+                        <div class="inline-flex items-center gap-2 rounded-md bg-slate-50 px-3 py-2 text-xs">
+                          <span class="font-semibold uppercase tracking-wide text-slate-500">Responsibility</span>
+                          <span class="font-medium text-slate-900">Owner</span>
+                        </div>
+                        <button
+                          class="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                          type="button"
+                        >
+                          Attachments (1)
+                        </button>
+                        <div class="proofBlock rounded-md bg-slate-50 px-3 py-2 text-xs">
+                          <span class="font-semibold uppercase tracking-wide text-slate-500">Proof</span>
+                          <span class="ml-2 text-slate-500">None</span>
+                        </div>
+                      </div>
+                      <div class="grid gap-3 lg:grid-cols-2">
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Observation</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">Natural gas, propane, or oil leak.</div>
+                        </section>
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Notes</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">
+                            <div class="notesWrap" data-notes-full="There is a gas leak behind the stove."></div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
                 <!-- Pending review: row 3 -->
-                <tr class="hover:bg-slate-50" data-status="3" data-due-iso="" data-location="Outside">
-                  <td class="w-10 px-3 py-3">
+                <tr class="issueMainRow hover:bg-slate-50" data-row-id="issue-3" data-expanded="false" data-status="3" data-due-iso="" data-location="Outside">
+                  <td class="w-10 px-3 py-3 align-top">
+                    <button
+                      type="button"
+                      class="issueExpandBtn inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-3"
+                      aria-label="Expand deficiency 3 details"
+                    >
+                      <i class="fa-solid fa-chevron-right text-xs transition-transform" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn w-10 px-3 py-3">
                     <input
                       type="checkbox"
                       class="issueCheckbox h-4 w-4 rounded border-slate-200 text-slate-400"
@@ -453,39 +514,64 @@
                       View criteria
                     </button>
                   </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    A visually accessible chimney, flue, or firebox…
-                  </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    <div
-                      class="notesWrap text-sm text-slate-700"
-                      data-notes-full="Broken chimney. Additional context and inspector comments can be shown here. Please ensure the photo shows the full repaired area with adequate lighting and a clear angle."
-                    ></div>
-                  </td>
-                  <td class="px-3 py-3 align-top">
-                    <button
-                      class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
-                      type="button"
-                    >
-                      View (1)
-                    </button>
-                  </td>
-                  <td class="px-3 py-3">
+                  <td class="statusColumn px-3 py-3">
                     <span class="inline-flex items-center gap-2 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-700">
                       <span class="h-2 w-2 rounded-full bg-violet-500"></span>
                       Pending review
                     </span>
                   </td>
-                  <td class="px-3 py-3">
-                    <button class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
-                      View (1)
-                    </button>
+                </tr>
+                <tr id="issue-detail-3" class="issueDetailRow hidden bg-slate-50/70">
+                  <td colspan="6" class="issueDetailCell px-4 py-4">
+                    <div class="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+                      <div class="mb-3 flex flex-wrap items-center gap-2">
+                        <div class="inline-flex items-center gap-2 rounded-md bg-slate-50 px-3 py-2 text-xs">
+                          <span class="font-semibold uppercase tracking-wide text-slate-500">Responsibility</span>
+                          <span class="font-medium text-slate-900">Owner</span>
+                        </div>
+                        <button
+                          class="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                          type="button"
+                        >
+                          Attachments (1)
+                        </button>
+                        <button class="proofBlock rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
+                          Proof (1)
+                        </button>
+                      </div>
+                      <div class="grid gap-3 lg:grid-cols-2">
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Observation</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">A visually accessible chimney, flue, or firebox…</div>
+                        </section>
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Notes</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">
+                            <div
+                              class="notesWrap"
+                              data-notes-full="Broken chimney. Additional context and inspector comments can be shown here. Please ensure the photo shows the full repaired area with adequate lighting and a clear angle."
+                            ></div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
                 <!-- Approved: row 4 -->
-                <tr class="hover:bg-slate-50" data-status="2" data-due-iso="" data-location="Unit">
-                  <td class="w-10 px-3 py-3">
+                <tr class="issueMainRow hover:bg-slate-50" data-row-id="issue-4" data-expanded="false" data-status="2" data-due-iso="" data-location="Unit">
+                  <td class="w-10 px-3 py-3 align-top">
+                    <button
+                      type="button"
+                      class="issueExpandBtn inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-4"
+                      aria-label="Expand deficiency 4 details"
+                    >
+                      <i class="fa-solid fa-chevron-right text-xs transition-transform" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn w-10 px-3 py-3">
                     <input
                       type="checkbox"
                       class="issueCheckbox h-4 w-4 rounded border-slate-200 text-slate-400"
@@ -515,36 +601,61 @@
                       View criteria
                     </button>
                   </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    Water is directed outside of the basin.
-                  </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    <div class="notesWrap text-sm text-slate-500" data-notes-full="—"></div>
-                  </td>
-                  <td class="px-3 py-3 align-top">
-                    <button
-                      class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
-                      type="button"
-                    >
-                      View (1)
-                    </button>
-                  </td>
-                  <td class="px-3 py-3">
+                  <td class="statusColumn px-3 py-3">
                     <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
                       <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
                       Approved
                     </span>
                   </td>
-                  <td class="px-3 py-3">
-                    <button class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
-                      View (1)
-                    </button>
+                </tr>
+                <tr id="issue-detail-4" class="issueDetailRow hidden bg-slate-50/70">
+                  <td colspan="6" class="issueDetailCell px-4 py-4">
+                    <div class="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+                      <div class="mb-3 flex flex-wrap items-center gap-2">
+                        <div class="inline-flex items-center gap-2 rounded-md bg-slate-50 px-3 py-2 text-xs">
+                          <span class="font-semibold uppercase tracking-wide text-slate-500">Responsibility</span>
+                          <span class="font-medium text-slate-900">Tenant</span>
+                        </div>
+                        <button
+                          class="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                          type="button"
+                        >
+                          Attachments (1)
+                        </button>
+                        <button class="proofBlock rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
+                          Proof (1)
+                        </button>
+                      </div>
+                      <div class="grid gap-3 lg:grid-cols-2">
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Observation</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">Water is directed outside of the basin.</div>
+                        </section>
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Notes</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-500">
+                            <div class="notesWrap" data-notes-full="—"></div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
                 <!-- Rejected deficiency: row 5 (second rejected) -->
-                <tr class="hover:bg-slate-50" data-status="5" data-due-iso="2026-01-29" data-location="Unit">
-                  <td class="w-10 px-3 py-3">
+                <tr class="issueMainRow hover:bg-slate-50" data-row-id="issue-5" data-expanded="false" data-status="5" data-due-iso="2026-01-29" data-location="Unit">
+                  <td class="w-10 px-3 py-3 align-top">
+                    <button
+                      type="button"
+                      class="issueExpandBtn inline-flex h-8 w-8 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-5"
+                      aria-label="Expand deficiency 5 details"
+                    >
+                      <i class="fa-solid fa-chevron-right text-xs transition-transform" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn w-10 px-3 py-3">
                     <input
                       type="checkbox"
                       class="issueCheckbox h-4 w-4 rounded border-slate-300 text-brand-600"
@@ -575,39 +686,53 @@
                       View criteria
                     </button>
                   </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    Window is cracked and does not seal properly.
-                  </td>
-                  <td class="w-40 max-w-[10rem] px-3 py-3 align-top">
-                    <div class="notesWrap text-sm text-slate-700" data-notes-full="Cracked window pane in living room, east wall."></div>
-                  </td>
-                  <td class="px-3 py-3 align-top">
-                    <button
-                      class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
-                      type="button"
-                    >
-                      View (1)
-                    </button>
-                  </td>
-                  <td class="px-3 py-3">
+                  <td class="statusColumn px-3 py-3">
                     <div class="flex flex-col items-start gap-1.5">
                       <span class="inline-flex items-center gap-2 rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-700">
                         <span class="h-2 w-2 rounded-full bg-rose-500"></span>
                         Rejected
                       </span>
-                      <button
-                        type="button"
-                        class="rejectionNotesBtn text-xs font-semibold text-brand-700 hover:text-brand-600"
-                        data-rejection-notes="The photo uploaded shows the wrong window. Please upload a photo of the east-facing window in the living room showing the repaired/replaced pane."
-                      >
-                        <i class="fa-solid fa-comment-dots mr-1" aria-hidden="true"></i>View rejection notes
-                      </button>
                     </div>
                   </td>
-                  <td class="px-3 py-3">
-                    <button class="rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
-                      View (1)
-                    </button>
+                </tr>
+                <tr id="issue-detail-5" class="issueDetailRow hidden bg-slate-50/70">
+                  <td colspan="6" class="issueDetailCell px-4 py-4">
+                    <div class="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+                      <div class="mb-3 flex flex-wrap items-center gap-2">
+                        <div class="inline-flex items-center gap-2 rounded-md bg-slate-50 px-3 py-2 text-xs">
+                          <span class="font-semibold uppercase tracking-wide text-slate-500">Responsibility</span>
+                          <span class="font-medium text-slate-900">Owner</span>
+                        </div>
+                        <button
+                          class="rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                          type="button"
+                        >
+                          Attachments (1)
+                        </button>
+                        <button class="proofBlock rounded-md border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50" type="button">
+                          Proof (1)
+                        </button>
+                        <button
+                          type="button"
+                          class="rejectionNotesBtn rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-700 hover:bg-rose-100"
+                          data-rejection-notes="The photo uploaded shows the wrong window. Please upload a photo of the east-facing window in the living room showing the repaired/replaced pane."
+                        >
+                          <i class="fa-solid fa-comment-dots mr-1" aria-hidden="true"></i>Rejected feedback
+                        </button>
+                      </div>
+                      <div class="grid gap-3 lg:grid-cols-2">
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Observation</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">Window is cracked and does not seal properly.</div>
+                        </section>
+                        <section class="rounded-md bg-slate-50 px-3 py-2.5">
+                          <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Notes</div>
+                          <div class="mt-1.5 text-sm leading-6 text-slate-700">
+                            <div class="notesWrap" data-notes-full="Cracked window pane in living room, east wall."></div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -926,7 +1051,7 @@
         const linkEl = document.getElementById("criteriaLink");
         const issueSearch = document.getElementById("issueSearch");
         const filterBtns = Array.from(document.querySelectorAll("[data-filter]"));
-        const rows = Array.from(document.querySelectorAll("table tbody tr"));
+        const tbody = document.querySelector("table tbody");
         const letterDialog = document.getElementById("letterDialog");
         const openLetterModalBtn = document.getElementById("openLetterModalBtn");
         const removeDialog = document.getElementById("removeProofDialog");
@@ -956,17 +1081,53 @@
         const proofActionButtons = document.getElementById("proofActionButtons");
         const proofStatusFilters = document.getElementById("proofStatusFilters");
         const mobileProofBar = document.getElementById("mobileProofBar");
+        const mainRows = Array.from(document.querySelectorAll("tbody .issueMainRow"));
+        const detailCells = Array.from(document.querySelectorAll(".issueDetailCell"));
         const scenario = new URLSearchParams(window.location.search).get("scenario") || "default";
         let activeStatusFilter = "all";
 
         const normalize = (s) => (s || "").toString().toLowerCase().trim();
-        const isRowVisible = (row) => row && !row.classList.contains("hidden");
-        const checkboxRow = (c) => c.closest("tr");
-        const visibleActionableCheckboxes = () => actionableCheckboxes.filter((c) => isRowVisible(checkboxRow(c)));
         const uploadDisabledScenario = scenario === "no-upload-self-cert" || scenario === "no-upload-hqs";
+        const rowGroups = mainRows.map((main) => {
+          const detail = main.nextElementSibling && main.nextElementSibling.classList.contains("issueDetailRow") ? main.nextElementSibling : null;
+          const toggle = main.querySelector(".issueExpandBtn");
+          return { main, detail, toggle };
+        });
+
+        const isRowVisible = (row) => row && !row.classList.contains("hidden");
+        const checkboxRow = (c) => c.closest("tr.issueMainRow");
+        const visibleActionableCheckboxes = () => actionableCheckboxes.filter((c) => isRowVisible(checkboxRow(c)));
+
+        const updateDetailColspans = () => {
+          const visibleColumnCount = Array.from(document.querySelectorAll("table thead th")).filter((th) => !th.classList.contains("hidden")).length;
+          detailCells.forEach((cell) => {
+            cell.colSpan = visibleColumnCount;
+          });
+        };
+
+        const syncDetailVisibility = (group) => {
+          if (!group || !group.detail) return;
+          const expanded = group.main.getAttribute("data-expanded") === "true";
+          const visible = isRowVisible(group.main);
+          group.detail.classList.toggle("hidden", !(expanded && visible));
+          if (group.toggle) {
+            group.toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+            const chevron = group.toggle.querySelector("[data-chevron]");
+            if (chevron) chevron.classList.toggle("rotate-90", expanded);
+          }
+        };
+
+        const setRowExpanded = (group, expanded) => {
+          if (!group) return;
+          group.main.setAttribute("data-expanded", expanded ? "true" : "false");
+          syncDetailVisibility(group);
+        };
 
         const applyScenario = () => {
-          if (!uploadDisabledScenario) return;
+          if (!uploadDisabledScenario) {
+            updateDetailColspans();
+            return;
+          }
 
           const scenarioConfig =
             scenario === "no-upload-self-cert"
@@ -1012,15 +1173,10 @@
             `;
           }
 
-          document
-            .querySelectorAll("table thead th:nth-child(1), table tbody td:nth-child(1)")
-            .forEach((node) => node.classList.add("hidden"));
-          document
-            .querySelectorAll("table thead th:nth-child(8), table tbody td:nth-child(8)")
-            .forEach((node) => node.classList.add("hidden"));
-          document
-            .querySelectorAll("table thead th:nth-child(9), table tbody td:nth-child(9)")
-            .forEach((node) => node.classList.add("hidden"));
+          document.querySelectorAll(".selectColumn").forEach((node) => node.classList.add("hidden"));
+          document.querySelectorAll(".statusColumn").forEach((node) => node.classList.add("hidden"));
+          document.querySelectorAll(".proofBlock").forEach((node) => node.classList.add("hidden"));
+          updateDetailColspans();
         };
 
         const setBulkActionsEnabled = (enabled) => {
@@ -1081,52 +1237,68 @@
         };
 
         const sortRows = () => {
-          if (!deficiencySortSelect) return;
-          const tbody = document.querySelector("table tbody");
-          if (!tbody) return;
+          if (!deficiencySortSelect || !tbody) return;
           const sortVal = deficiencySortSelect.value;
-          const allRows = Array.from(tbody.querySelectorAll("tr"));
+          const groups = rowGroups.slice();
 
-          allRows.sort((a, b) => {
+          groups.sort((a, b) => {
             switch (sortVal) {
               case "due-desc": {
-                const aD = a.getAttribute("data-due-iso") || "9999";
-                const bD = b.getAttribute("data-due-iso") || "9999";
+                const aD = a.main.getAttribute("data-due-iso") || "9999";
+                const bD = b.main.getAttribute("data-due-iso") || "9999";
                 return bD.localeCompare(aD);
               }
               case "status-asc": {
-                const aS = a.getAttribute("data-status") || "";
-                const bS = b.getAttribute("data-status") || "";
+                const aS = a.main.getAttribute("data-status") || "";
+                const bS = b.main.getAttribute("data-status") || "";
                 return aS.localeCompare(bS);
               }
               case "location-asc": {
-                const aL = a.getAttribute("data-location") || "";
-                const bL = b.getAttribute("data-location") || "";
+                const aL = a.main.getAttribute("data-location") || "";
+                const bL = b.main.getAttribute("data-location") || "";
                 return aL.localeCompare(bL);
               }
               default: {
-                const aD = a.getAttribute("data-due-iso") || "9999";
-                const bD = b.getAttribute("data-due-iso") || "9999";
+                const aD = a.main.getAttribute("data-due-iso") || "9999";
+                const bD = b.main.getAttribute("data-due-iso") || "9999";
                 return aD.localeCompare(bD);
               }
             }
           });
 
-          allRows.forEach((row) => tbody.appendChild(row));
+          groups.forEach((group) => {
+            tbody.appendChild(group.main);
+            if (group.detail) tbody.appendChild(group.detail);
+          });
         };
 
         const applyRowFilters = () => {
           const q = normalize(issueSearch ? issueSearch.value : "");
-          rows.forEach((row) => {
-            const matchesStatus = activeStatusFilter === "all" || (row.getAttribute("data-status") || "") === activeStatusFilter;
-            const matchesSearch = !q || normalize(row.textContent).includes(q);
-            row.classList.toggle("hidden", !(matchesStatus && matchesSearch));
+          rowGroups.forEach((group) => {
+            const matchesStatus =
+              activeStatusFilter === "all" || (group.main.getAttribute("data-status") || "") === activeStatusFilter;
+            const haystack = normalize(`${group.main.textContent} ${group.detail ? group.detail.textContent : ""}`);
+            const matchesSearch = !q || haystack.includes(q);
+            const show = matchesStatus && matchesSearch;
+            group.main.classList.toggle("hidden", !show);
+            syncDetailVisibility(group);
           });
 
           clearSelection();
         };
 
         document.addEventListener("click", (e) => {
+          const toggleBtn = e.target.closest(".issueExpandBtn");
+          if (toggleBtn) {
+            e.preventDefault();
+            const group = rowGroups.find((entry) => entry.toggle === toggleBtn);
+            if (group) {
+              const expanded = group.main.getAttribute("data-expanded") === "true";
+              setRowExpanded(group, !expanded);
+            }
+            return;
+          }
+
           const btn = e.target.closest("[data-criteria]");
           if (!btn) return;
           e.preventDefault();
@@ -1140,7 +1312,6 @@
           if (typeof dialog.showModal === "function") dialog.showModal();
         });
 
-        // Rejection notes modal
         document.addEventListener("click", (e) => {
           const btn = e.target.closest(".rejectionNotesBtn");
           if (!btn) return;
@@ -1196,9 +1367,9 @@
           selectAll.checked = false;
           selectAll.indeterminate = false;
         }
+        rowGroups.forEach((group) => setRowExpanded(group, false));
         updateSelectedUI();
 
-        // Status pill filters
         filterBtns.forEach((btn) => {
           btn.addEventListener("click", () => {
             activeStatusFilter = btn.getAttribute("data-filter") || "all";
@@ -1207,7 +1378,6 @@
           });
         });
 
-        // Search (debounced)
         if (issueSearch) {
           let t = null;
           issueSearch.addEventListener("input", () => {
@@ -1216,16 +1386,15 @@
           });
         }
 
-        // Sort
         if (deficiencySortSelect) {
           deficiencySortSelect.addEventListener("change", sortRows);
         }
 
         const initialBtn = filterBtns.find((b) => b.getAttribute("data-filter") === "all") || filterBtns[0];
         if (initialBtn) setActivePill(initialBtn);
+        sortRows();
         applyRowFilters();
 
-        // Notes: always show inline, with "read more" expansion for long text.
         const clampLen = 90;
         const notesEls = Array.from(document.querySelectorAll(".notesWrap[data-notes-full]"));
         notesEls.forEach((node) => {

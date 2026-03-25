@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inspection Detail (Bootstrap 2) - Mockup</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css"
+    />
+    <style>
+      #inspectionDetailBs2 {
+        background: #f8f9fb;
+        color: #0f172a;
+        min-height: 100vh;
+        padding: 32px 0 48px;
+      }
+
+      #inspectionDetailBs2 .page-shell {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      #inspectionDetailBs2 .page-card,
+      #inspectionDetailBs2 .summary-card,
+      #inspectionDetailBs2 .detail-panel {
+        background: #fff;
+        border: 1px solid #d9dee8;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+      }
+
+      #inspectionDetailBs2 .header-row {
+        margin-bottom: 18px;
+      }
+
+      #inspectionDetailBs2 .header-title {
+        display: inline-block;
+        margin: 0 0 0 8px;
+        font-size: 28px;
+        line-height: 34px;
+      }
+
+      #inspectionDetailBs2 .summary-card {
+        min-height: 148px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+
+      #inspectionDetailBs2 .summary-label,
+      #inspectionDetailBs2 .detail-kicker {
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      #inspectionDetailBs2 .summary-row {
+        margin-top: 10px;
+      }
+
+      #inspectionDetailBs2 .summary-key {
+        color: #64748b;
+      }
+
+      #inspectionDetailBs2 .summary-value {
+        text-align: right;
+        font-weight: 600;
+      }
+
+      #inspectionDetailBs2 .proof-header {
+        padding: 16px;
+        border-bottom: 1px solid #d9dee8;
+      }
+
+      #inspectionDetailBs2 .proof-toolbar {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      #inspectionDetailBs2 .proof-toolbar .btn,
+      #inspectionDetailBs2 .filter-pills .btn,
+      #inspectionDetailBs2 .issueExpandBtn,
+      #inspectionDetailBs2 .table .btn-mini {
+        box-shadow: none;
+      }
+
+      #inspectionDetailBs2 .toolbar-right {
+        text-align: right;
+      }
+
+      #inspectionDetailBs2 .selected-pill {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 6px 10px;
+        border: 1px solid #d9dee8;
+        border-radius: 999px;
+        background: #f8fafc;
+      }
+
+      #inspectionDetailBs2 .filter-pills {
+        padding: 12px 16px;
+        border-bottom: 1px solid #d9dee8;
+      }
+
+      #inspectionDetailBs2 .filter-pills .btn {
+        margin: 0 6px 6px 0;
+        border-radius: 999px;
+      }
+
+      #inspectionDetailBs2 .filter-pills .btn.active {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
+      }
+
+      #inspectionDetailBs2 .table-wrap {
+        overflow-x: auto;
+      }
+
+      #inspectionDetailBs2 table.issue-table {
+        margin-bottom: 0;
+      }
+
+      #inspectionDetailBs2 .issue-table th,
+      #inspectionDetailBs2 .issue-table td {
+        vertical-align: top;
+        font-size: 13px;
+      }
+
+      #inspectionDetailBs2 .issueExpandBtn {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+      }
+
+      #inspectionDetailBs2 .chevron-rotated {
+        transform: rotate(90deg);
+      }
+
+      #inspectionDetailBs2 .detail-panel {
+        padding: 10px 12px;
+      }
+
+      #inspectionDetailBs2 .detail-toolbar {
+        margin-bottom: 10px;
+      }
+
+      #inspectionDetailBs2 .detail-chip {
+        display: inline-block;
+        margin: 0 8px 8px 0;
+        padding: 6px 10px;
+        border-radius: 6px;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        font-size: 12px;
+      }
+
+      #inspectionDetailBs2 .detail-chip .value {
+        font-weight: 600;
+        color: #0f172a;
+        margin-left: 4px;
+      }
+
+      #inspectionDetailBs2 .detail-box {
+        background: #f8fafc;
+        border-radius: 6px;
+        padding: 10px 12px;
+        min-height: 72px;
+      }
+
+      #inspectionDetailBs2 .detail-box p {
+        margin: 6px 0 0;
+      }
+
+      #inspectionDetailBs2 .status-badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #inspectionDetailBs2 .status-rejected {
+        background: #fff1f2;
+        color: #be123c;
+      }
+
+      #inspectionDetailBs2 .status-proof {
+        background: #fffbeb;
+        color: #b45309;
+      }
+
+      #inspectionDetailBs2 .status-pending {
+        background: #f5f3ff;
+        color: #7c3aed;
+      }
+
+      #inspectionDetailBs2 .status-approved {
+        background: #ecfdf5;
+        color: #047857;
+      }
+
+      #inspectionDetailBs2 .muted-small {
+        color: #64748b;
+        font-size: 12px;
+      }
+
+      #inspectionDetailBs2 .criteria-link,
+      #inspectionDetailBs2 .rejectionNotesBtn,
+      #inspectionDetailBs2 .clear-link {
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      #inspectionDetailBs2 .hidden {
+        display: none !important;
+      }
+
+      #inspectionDetailBs2 .opacity-50 {
+        opacity: 0.5;
+      }
+
+      #inspectionDetailBs2 .pointer-events-none {
+        pointer-events: none;
+      }
+
+      #inspectionDetailBs2 .proof-disabled-notice {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border: 1px solid #fcd34d;
+        border-radius: 6px;
+        background: #fffbeb;
+      }
+
+      #inspectionDetailBs2 .mobile-proof-bar {
+        display: none;
+      }
+
+      #inspectionDetailBs2 .notesToggle {
+        margin-left: 6px;
+      }
+
+      @media (max-width: 767px) {
+        #inspectionDetailBs2 {
+          padding: 16px 0 28px;
+        }
+
+        #inspectionDetailBs2 .toolbar-right {
+          text-align: left;
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="inspectionDetailBs2">
+      <div class="container-fluid page-shell">
+        <div class="row-fluid header-row">
+          <div class="span6">
+            <a href="unit-inspections-list-bootstrap2.html" class="btn" aria-label="Back to inspections list">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h1 id="inspectionTitle" class="header-title">Inspection #26581</h1>
+          </div>
+          <div class="span6 toolbar-right">
+            <button id="openLetterModalBtn" type="button" class="btn">
+              <i class="fa-solid fa-file-lines"></i>
+              Generate letter
+            </button>
+            <button type="button" class="btn">
+              <i class="fa-solid fa-file-excel"></i>
+              Export to Excel
+            </button>
+          </div>
+        </div>
+
+        <div class="row-fluid" aria-label="Inspection summary">
+          <div class="span3">
+            <div class="summary-card">
+              <div class="summary-label">Tenant</div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Name</div>
+                <div class="span7 summary-value">Coleman, Alfred</div>
+              </div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Tenant ID</div>
+                <div class="span7 summary-value">t0012002</div>
+              </div>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="summary-card">
+              <div class="summary-label">Unit</div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Address</div>
+                <div class="span7 summary-value">
+                  800 N L St, #004
+                  <div class="muted-small">Lompoc, CA 93436</div>
+                </div>
+              </div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Self certification</div>
+                <div id="summarySelfCertification" class="span7 summary-value">Yes</div>
+              </div>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="summary-card">
+              <div class="summary-label">Inspection</div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Inspection ID</div>
+                <div class="span7 summary-value">26581</div>
+              </div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Type</div>
+                <div id="summaryInspectionType" class="span7 summary-value">Reinspection</div>
+              </div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Inspection date</div>
+                <div class="span7 summary-value">-</div>
+              </div>
+              <div class="row-fluid summary-row">
+                <div class="span5 summary-key">Result</div>
+                <div class="span7 summary-value">-</div>
+              </div>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="summary-card">
+              <div class="summary-label">Inspector</div>
+              <div class="row-fluid summary-row">
+                <div class="span4 summary-key">Name</div>
+                <div class="span8 summary-value">Perez Olmedo CM, Mateo</div>
+              </div>
+              <div class="row-fluid summary-row">
+                <div class="span4 summary-key">Phone</div>
+                <div class="span8 summary-value">-</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-card" style="margin-top: 8px;">
+          <div class="proof-header">
+            <div class="row-fluid">
+              <div class="span7">
+                <h3 id="proofSectionTitle" style="margin: 0;">Proof of mitigation</h3>
+                <p id="proofSectionDescription" class="muted" style="margin: 4px 0 0;">
+                  Upload photos showing corrected deficiencies, then submit for review. Submissions are reviewed by the inspector/agency.
+                </p>
+                <div id="proofUploadDisabledNotice" class="proof-disabled-notice hidden"></div>
+              </div>
+            </div>
+            <div class="row-fluid proof-toolbar">
+              <div class="span7" id="proofActionButtons">
+                <button type="button" id="uploadProofBtn" class="btn">Upload photos</button>
+                <button type="button" id="removeProofBtn" class="btn btn-danger">Remove photos</button>
+                <button type="button" id="submitSelectedBtn" class="btn btn-primary">Submit for review</button>
+                <span id="selectedPill" class="selected-pill hidden" aria-live="polite">
+                  <strong id="selectedCount">0</strong> selected
+                  <button id="clearSelectionLink" type="button" class="btn btn-link btn-mini clear-link">Clear</button>
+                </span>
+              </div>
+              <div class="span5 toolbar-right">
+                <select id="deficiencySortSelect" aria-label="Sort deficiencies" style="margin: 0 8px 0 0;">
+                  <option value="default">Sort: Due soonest</option>
+                  <option value="due-desc">Due latest</option>
+                  <option value="status-asc">Status: A - Z</option>
+                  <option value="location-asc">Location: A - Z</option>
+                </select>
+                <input id="issueSearch" type="search" placeholder="Search deficiencies..." style="margin: 0;" />
+              </div>
+            </div>
+          </div>
+
+          <div id="proofStatusFilters" class="filter-pills">
+            <button type="button" class="btn btn-small active" data-filter="all" aria-current="true">All</button>
+            <button type="button" class="btn btn-small" data-filter="1">Proof required</button>
+            <button type="button" class="btn btn-small" data-filter="5">Rejected</button>
+            <button type="button" class="btn btn-small" data-filter="3">Pending review</button>
+            <button type="button" class="btn btn-small" data-filter="2">Approved</button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table table-bordered table-striped issue-table">
+              <thead>
+                <tr>
+                  <th style="width: 34px;"></th>
+                  <th class="selectColumn" style="width: 34px;">
+                    <input id="selectAllIssues" type="checkbox" aria-label="Select all actionable deficiencies" />
+                  </th>
+                  <th style="width: 120px;">Due</th>
+                  <th>Location</th>
+                  <th>Standard / Criteria</th>
+                  <th class="statusColumn">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="issueMainRow" data-row-id="issue-1" data-expanded="false" data-status="5" data-due-iso="2026-01-23" data-location="Inside">
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-mini issueExpandBtn"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-1"
+                      aria-label="Expand deficiency 1 details"
+                    >
+                      <i class="fa-solid fa-chevron-right" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn">
+                    <input type="checkbox" class="issueCheckbox" aria-label="Select deficiency 1" />
+                  </td>
+                  <td>
+                    <strong style="color:#be123c;">Overdue</strong>
+                    <div class="muted-small">24 hours</div>
+                    <div class="muted-small">Due 01/23/2026</div>
+                  </td>
+                  <td>
+                    <strong>Inside</strong>
+                    <div class="muted-small">Main hallway</div>
+                  </td>
+                  <td>
+                    <strong>Door - Fire labeled</strong>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-link btn-mini criteria-link"
+                        data-criteria
+                        data-criteria-title="Inside - Main hallway"
+                        data-criteria-standard="Door - Fire labeled"
+                        data-criteria-link="https://www.hud.gov/sites/dfiles/PIH/documents/Standard-Door-Fire-Labeled_20230811.pdf"
+                      >
+                        View criteria
+                      </button>
+                    </div>
+                  </td>
+                  <td class="statusColumn">
+                    <span class="status-badge status-rejected">Rejected</span>
+                  </td>
+                </tr>
+                <tr id="issue-detail-1" class="issueDetailRow hidden">
+                  <td colspan="6" class="issueDetailCell">
+                    <div class="detail-panel">
+                      <div class="detail-toolbar">
+                        <span class="detail-chip"><span class="detail-kicker">Responsibility</span><span class="value">Owner</span></span>
+                        <button class="btn btn-mini" type="button">Attachments (1)</button>
+                        <button class="btn btn-mini proofBlock" type="button">Proof (1)</button>
+                        <button
+                          type="button"
+                          class="btn btn-mini btn-danger rejectionNotesBtn"
+                          data-rejection-notes="Uploaded photo does not clearly show the fire label on the door. Please retake the photo with the label visible and in focus."
+                        >
+                          Rejected feedback
+                        </button>
+                      </div>
+                      <div class="row-fluid">
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Observation</div>
+                            <p>Fire labeled door is missing.</p>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Notes</div>
+                            <p><span class="notesWrap" data-notes-full="No Fire label door."></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="issueMainRow" data-row-id="issue-2" data-expanded="false" data-status="1" data-due-iso="2026-01-28" data-location="Unit">
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-mini issueExpandBtn"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-2"
+                      aria-label="Expand deficiency 2 details"
+                    >
+                      <i class="fa-solid fa-chevron-right" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn">
+                    <input type="checkbox" class="issueCheckbox" aria-label="Select deficiency 2" />
+                  </td>
+                  <td>
+                    <strong>In 1 day</strong>
+                    <div class="muted-small">24 hours</div>
+                    <div class="muted-small">Due 01/28/2026</div>
+                  </td>
+                  <td>
+                    <strong>Unit</strong>
+                    <div class="muted-small">Kitchen</div>
+                  </td>
+                  <td>
+                    <strong>Leak - Gas or Oil</strong>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-link btn-mini criteria-link"
+                        data-criteria
+                        data-criteria-title="Unit - Kitchen"
+                        data-criteria-standard="Leak - Gas or Oil"
+                        data-criteria-link="https://www.hud.gov/sites/dfiles/PIH/documents/NSPIRE_Standards.pdf"
+                      >
+                        View criteria
+                      </button>
+                    </div>
+                  </td>
+                  <td class="statusColumn">
+                    <span class="status-badge status-proof">Proof required</span>
+                  </td>
+                </tr>
+                <tr id="issue-detail-2" class="issueDetailRow hidden">
+                  <td colspan="6" class="issueDetailCell">
+                    <div class="detail-panel">
+                      <div class="detail-toolbar">
+                        <span class="detail-chip"><span class="detail-kicker">Responsibility</span><span class="value">Owner</span></span>
+                        <button class="btn btn-mini" type="button">Attachments (1)</button>
+                        <span class="detail-chip proofBlock"><span class="detail-kicker">Proof</span><span class="value muted-small">None</span></span>
+                      </div>
+                      <div class="row-fluid">
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Observation</div>
+                            <p>Natural gas, propane, or oil leak.</p>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Notes</div>
+                            <p><span class="notesWrap" data-notes-full="There is a gas leak behind the stove."></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="issueMainRow" data-row-id="issue-3" data-expanded="false" data-status="3" data-due-iso="" data-location="Outside">
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-mini issueExpandBtn"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-3"
+                      aria-label="Expand deficiency 3 details"
+                    >
+                      <i class="fa-solid fa-chevron-right" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn">
+                    <input type="checkbox" class="issueCheckbox" aria-label="Select deficiency 3" disabled aria-disabled="true" />
+                  </td>
+                  <td>
+                    <strong>-</strong>
+                    <div class="muted-small">Submitted</div>
+                  </td>
+                  <td>
+                    <strong>Outside</strong>
+                    <div class="muted-small">Northside wall</div>
+                  </td>
+                  <td>
+                    <strong>Chimney</strong>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-link btn-mini criteria-link"
+                        data-criteria
+                        data-criteria-title="Outside - Northside wall"
+                        data-criteria-standard="Chimney"
+                        data-criteria-link="https://www.hud.gov/sites/dfiles/PIH/documents/NSPIRE_Standards.pdf"
+                      >
+                        View criteria
+                      </button>
+                    </div>
+                  </td>
+                  <td class="statusColumn">
+                    <span class="status-badge status-pending">Pending review</span>
+                  </td>
+                </tr>
+                <tr id="issue-detail-3" class="issueDetailRow hidden">
+                  <td colspan="6" class="issueDetailCell">
+                    <div class="detail-panel">
+                      <div class="detail-toolbar">
+                        <span class="detail-chip"><span class="detail-kicker">Responsibility</span><span class="value">Owner</span></span>
+                        <button class="btn btn-mini" type="button">Attachments (1)</button>
+                        <button class="btn btn-mini proofBlock" type="button">Proof (1)</button>
+                      </div>
+                      <div class="row-fluid">
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Observation</div>
+                            <p>A visually accessible chimney, flue, or firebox...</p>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Notes</div>
+                            <p><span class="notesWrap" data-notes-full="Broken chimney. Additional context and inspector comments can be shown here. Please ensure the photo shows the full repaired area with adequate lighting and a clear angle."></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="issueMainRow" data-row-id="issue-4" data-expanded="false" data-status="2" data-due-iso="" data-location="Unit">
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-mini issueExpandBtn"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-4"
+                      aria-label="Expand deficiency 4 details"
+                    >
+                      <i class="fa-solid fa-chevron-right" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn">
+                    <input type="checkbox" class="issueCheckbox" aria-label="Select deficiency 4" disabled aria-disabled="true" />
+                  </td>
+                  <td>
+                    <strong>-</strong>
+                    <div class="muted-small">No action</div>
+                  </td>
+                  <td>
+                    <strong>Unit</strong>
+                    <div class="muted-small">Bathroom</div>
+                  </td>
+                  <td>
+                    <strong>Sink</strong>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-link btn-mini criteria-link"
+                        data-criteria
+                        data-criteria-title="Unit - Bathroom"
+                        data-criteria-standard="Sink"
+                        data-criteria-link="https://www.hud.gov/sites/dfiles/PIH/documents/NSPIRE_Standards.pdf"
+                      >
+                        View criteria
+                      </button>
+                    </div>
+                  </td>
+                  <td class="statusColumn">
+                    <span class="status-badge status-approved">Approved</span>
+                  </td>
+                </tr>
+                <tr id="issue-detail-4" class="issueDetailRow hidden">
+                  <td colspan="6" class="issueDetailCell">
+                    <div class="detail-panel">
+                      <div class="detail-toolbar">
+                        <span class="detail-chip"><span class="detail-kicker">Responsibility</span><span class="value">Tenant</span></span>
+                        <button class="btn btn-mini" type="button">Attachments (1)</button>
+                        <button class="btn btn-mini proofBlock" type="button">Proof (1)</button>
+                      </div>
+                      <div class="row-fluid">
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Observation</div>
+                            <p>Water is directed outside of the basin.</p>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Notes</div>
+                            <p><span class="notesWrap" data-notes-full="-"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="issueMainRow" data-row-id="issue-5" data-expanded="false" data-status="5" data-due-iso="2026-01-29" data-location="Unit">
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-mini issueExpandBtn"
+                      aria-expanded="false"
+                      aria-controls="issue-detail-5"
+                      aria-label="Expand deficiency 5 details"
+                    >
+                      <i class="fa-solid fa-chevron-right" data-chevron aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="selectColumn">
+                    <input type="checkbox" class="issueCheckbox" aria-label="Select deficiency 5" />
+                  </td>
+                  <td>
+                    <strong>In 2 days</strong>
+                    <div class="muted-small">30 days</div>
+                    <div class="muted-small">Due 01/29/2026</div>
+                  </td>
+                  <td>
+                    <strong>Unit</strong>
+                    <div class="muted-small">Living room</div>
+                  </td>
+                  <td>
+                    <strong>Window condition</strong>
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-link btn-mini criteria-link"
+                        data-criteria
+                        data-criteria-title="Unit - Living room"
+                        data-criteria-standard="Window condition"
+                        data-criteria-link="https://www.hud.gov/sites/dfiles/PIH/documents/NSPIRE_Standards.pdf"
+                      >
+                        View criteria
+                      </button>
+                    </div>
+                  </td>
+                  <td class="statusColumn">
+                    <span class="status-badge status-rejected">Rejected</span>
+                  </td>
+                </tr>
+                <tr id="issue-detail-5" class="issueDetailRow hidden">
+                  <td colspan="6" class="issueDetailCell">
+                    <div class="detail-panel">
+                      <div class="detail-toolbar">
+                        <span class="detail-chip"><span class="detail-kicker">Responsibility</span><span class="value">Owner</span></span>
+                        <button class="btn btn-mini" type="button">Attachments (1)</button>
+                        <button class="btn btn-mini proofBlock" type="button">Proof (1)</button>
+                        <button
+                          type="button"
+                          class="btn btn-mini btn-danger rejectionNotesBtn"
+                          data-rejection-notes="The photo uploaded shows the wrong window. Please upload a photo of the east-facing window in the living room showing the repaired/replaced pane."
+                        >
+                          Rejected feedback
+                        </button>
+                      </div>
+                      <div class="row-fluid">
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Observation</div>
+                            <p>Window is cracked and does not seal properly.</p>
+                          </div>
+                        </div>
+                        <div class="span6">
+                          <div class="detail-box">
+                            <div class="detail-kicker">Notes</div>
+                            <p><span class="notesWrap" data-notes-full="Cracked window pane in living room, east wall."></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="mobileProofBar" class="mobile-proof-bar hidden">
+          <span class="muted-small">Selected: <strong id="selectedCountMobile">0</strong></span>
+          <button type="button" id="uploadProofBtnMobile" class="btn btn-small">Upload photos</button>
+          <button type="button" id="submitSelectedBtnMobile" class="btn btn-small btn-primary">Submit</button>
+          <button type="button" id="clearSelectionLinkMobile" class="btn btn-link btn-mini hidden">Clear</button>
+        </div>
+      </div>
+
+      <div id="criteriaDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 id="criteriaTitle">Criteria</h3>
+          <div id="criteriaStandard" class="muted-small">-</div>
+        </div>
+        <div class="modal-body">
+          <p>Please visit the link below for more details:</p>
+          <p><a id="criteriaLink" href="#" target="_blank" rel="noreferrer">-</a></p>
+          <p class="muted-small">Tip: If the link doesn't open, copy and paste it into a new tab.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div>
+
+      <div id="letterDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Generate letter</h3>
+        </div>
+        <div class="modal-body">
+          <label for="ReportType">Letter type</label>
+          <select id="ReportType" name="ReportType">
+            <option value=""></option>
+            <option value="Failed items only">Failed items only</option>
+            <option value="Schedule letter">Schedule letter</option>
+            <option value="Results letter">Results letter</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Generate</button>
+        </div>
+      </div>
+
+      <div id="removeProofDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Remove photos?</h3>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-error">
+            <strong>Important.</strong> This removes the uploaded photos for the selected deficiencies. It does not delete the deficiencies themselves.
+          </div>
+          <p>You can upload new proof images again before submitting.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Remove photos</button>
+        </div>
+      </div>
+
+      <div id="uploadProofDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Upload photos</h3>
+        </div>
+        <div class="modal-body">
+          <label for="bulkUpload">Choose images</label>
+          <input id="bulkUpload" type="file" accept="image/*" multiple />
+          <p class="muted-small">Images only (JPG/PNG). Upload clear "after" photos.</p>
+          <div class="alert">If you upload multiple images, they'll be added to each selected deficiency.</div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Save</button>
+        </div>
+      </div>
+
+      <div id="rejectionNotesDialog" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Rejection notes</h3>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-error">
+            <div id="rejectionNotesContent">-</div>
+          </div>
+          <p>Please address the feedback above, then upload new proof photos and resubmit for review.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script>
+      (() => {
+        const $ = window.jQuery;
+        const titleEl = document.getElementById("criteriaTitle");
+        const standardEl = document.getElementById("criteriaStandard");
+        const linkEl = document.getElementById("criteriaLink");
+        const issueSearch = document.getElementById("issueSearch");
+        const filterBtns = Array.from(document.querySelectorAll("#inspectionDetailBs2 [data-filter]"));
+        const tbody = document.querySelector("#inspectionDetailBs2 table tbody");
+        const openLetterModalBtn = document.getElementById("openLetterModalBtn");
+        const removeBtn = document.getElementById("removeProofBtn");
+        const uploadBtn = document.getElementById("uploadProofBtn");
+        const uploadBtnMobile = document.getElementById("uploadProofBtnMobile");
+        const selectAll = document.getElementById("selectAllIssues");
+        const selectedCount = document.getElementById("selectedCount");
+        const selectedCountMobile = document.getElementById("selectedCountMobile");
+        const submitSelectedBtn = document.getElementById("submitSelectedBtn");
+        const submitSelectedBtnMobile = document.getElementById("submitSelectedBtnMobile");
+        const clearSelectionLink = document.getElementById("clearSelectionLink");
+        const clearSelectionLinkMobile = document.getElementById("clearSelectionLinkMobile");
+        const selectedPill = document.getElementById("selectedPill");
+        const issueCheckboxes = Array.from(document.querySelectorAll("#inspectionDetailBs2 .issueCheckbox"));
+        const actionableCheckboxes = issueCheckboxes.filter((c) => !c.disabled);
+        const rejectionNotesContent = document.getElementById("rejectionNotesContent");
+        const deficiencySortSelect = document.getElementById("deficiencySortSelect");
+        const inspectionTitle = document.getElementById("inspectionTitle");
+        const summarySelfCertification = document.getElementById("summarySelfCertification");
+        const summaryInspectionType = document.getElementById("summaryInspectionType");
+        const proofSectionTitle = document.getElementById("proofSectionTitle");
+        const proofSectionDescription = document.getElementById("proofSectionDescription");
+        const proofUploadDisabledNotice = document.getElementById("proofUploadDisabledNotice");
+        const proofActionButtons = document.getElementById("proofActionButtons");
+        const proofStatusFilters = document.getElementById("proofStatusFilters");
+        const mobileProofBar = document.getElementById("mobileProofBar");
+        const mainRows = Array.from(document.querySelectorAll("#inspectionDetailBs2 tbody .issueMainRow"));
+        const detailCells = Array.from(document.querySelectorAll("#inspectionDetailBs2 .issueDetailCell"));
+        const scenario = new URLSearchParams(window.location.search).get("scenario") || "default";
+        let activeStatusFilter = "all";
+
+        const normalize = (s) => (s || "").toString().toLowerCase().trim();
+        const uploadDisabledScenario = scenario === "no-upload-self-cert" || scenario === "no-upload-hqs";
+        const rowGroups = mainRows.map((main) => {
+          const detail = main.nextElementSibling && main.nextElementSibling.classList.contains("issueDetailRow") ? main.nextElementSibling : null;
+          const toggle = main.querySelector(".issueExpandBtn");
+          return { main, detail, toggle };
+        });
+
+        const showModal = (selector) => {
+          if ($) $(selector).modal("show");
+        };
+
+        const isRowVisible = (row) => row && !row.classList.contains("hidden");
+        const checkboxRow = (c) => c.closest("tr.issueMainRow");
+        const visibleActionableCheckboxes = () => actionableCheckboxes.filter((c) => isRowVisible(checkboxRow(c)));
+
+        const updateDetailColspans = () => {
+          const visibleColumnCount = Array.from(document.querySelectorAll("#inspectionDetailBs2 table thead th")).filter(
+            (th) => !th.classList.contains("hidden")
+          ).length;
+          detailCells.forEach((cell) => {
+            cell.colSpan = visibleColumnCount;
+          });
+        };
+
+        const syncDetailVisibility = (group) => {
+          if (!group || !group.detail) return;
+          const expanded = group.main.getAttribute("data-expanded") === "true";
+          const visible = isRowVisible(group.main);
+          group.detail.classList.toggle("hidden", !(expanded && visible));
+          if (group.toggle) {
+            group.toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+            const chevron = group.toggle.querySelector("[data-chevron]");
+            if (chevron) chevron.classList.toggle("chevron-rotated", expanded);
+          }
+        };
+
+        const setRowExpanded = (group, expanded) => {
+          if (!group) return;
+          group.main.setAttribute("data-expanded", expanded ? "true" : "false");
+          syncDetailVisibility(group);
+        };
+
+        const applyScenario = () => {
+          if (!uploadDisabledScenario) {
+            updateDetailColspans();
+            return;
+          }
+
+          const scenarioConfig =
+            scenario === "no-upload-self-cert"
+              ? {
+                  title: "Inspection #26586",
+                  type: "Self-certification",
+                  selfCertification: "Yes",
+                  heading: "Inspection deficiencies",
+                  description:
+                    "Review the deficiencies and notes below. Proof upload is not required for this NSPIRE-V self-certification because document upload is turned off.",
+                  notice:
+                    "Document upload is unavailable for this self-certification setting. Landlords are not required to upload proof for this inspection.",
+                }
+              : {
+                  title: "Inspection #26587",
+                  type: "HQS",
+                  selfCertification: "No",
+                  heading: "Inspection deficiencies",
+                  description:
+                    "Review the deficiencies and notes below. Proof upload is not currently required for this HQS inspection scenario.",
+                  notice:
+                    "Proof upload is currently unavailable for this HQS inspection scenario while CSD confirms final behavior.",
+                };
+
+          if (inspectionTitle) inspectionTitle.textContent = scenarioConfig.title;
+          if (summaryInspectionType) summaryInspectionType.textContent = scenarioConfig.type;
+          if (summarySelfCertification) summarySelfCertification.textContent = scenarioConfig.selfCertification;
+          if (proofSectionTitle) proofSectionTitle.textContent = scenarioConfig.heading;
+          if (proofSectionDescription) proofSectionDescription.textContent = scenarioConfig.description;
+          if (proofUploadDisabledNotice) {
+            proofUploadDisabledNotice.textContent = scenarioConfig.notice;
+            proofUploadDisabledNotice.classList.remove("hidden");
+          }
+          if (proofActionButtons) proofActionButtons.classList.add("hidden");
+          if (proofStatusFilters) proofStatusFilters.classList.add("hidden");
+          if (mobileProofBar) mobileProofBar.classList.add("hidden");
+
+          if (deficiencySortSelect) {
+            deficiencySortSelect.innerHTML = `
+              <option value="default">Sort: Due soonest</option>
+              <option value="due-desc">Due latest</option>
+              <option value="location-asc">Location: A - Z</option>
+            `;
+          }
+
+          document.querySelectorAll("#inspectionDetailBs2 .selectColumn").forEach((node) => node.classList.add("hidden"));
+          document.querySelectorAll("#inspectionDetailBs2 .statusColumn").forEach((node) => node.classList.add("hidden"));
+          document.querySelectorAll("#inspectionDetailBs2 .proofBlock").forEach((node) => node.classList.add("hidden"));
+          updateDetailColspans();
+        };
+
+        const setBulkActionsEnabled = (enabled) => {
+          const disableClass = "opacity-50 pointer-events-none";
+          const btns = [uploadBtn, uploadBtnMobile, removeBtn, submitSelectedBtn, submitSelectedBtnMobile].filter(Boolean);
+          btns.forEach((b) => {
+            if (enabled) b.classList.remove(...disableClass.split(" "));
+            else b.classList.add(...disableClass.split(" "));
+            b.setAttribute("aria-disabled", enabled ? "false" : "true");
+          });
+        };
+
+        const updateSelectedUI = () => {
+          const visible = visibleActionableCheckboxes();
+          const count = visible.filter((c) => c.checked).length;
+          if (selectedCount) selectedCount.textContent = String(count);
+          if (selectedCountMobile) selectedCountMobile.textContent = String(count);
+          if (clearSelectionLink) clearSelectionLink.classList.toggle("hidden", count === 0);
+          if (clearSelectionLinkMobile) clearSelectionLinkMobile.classList.toggle("hidden", count === 0);
+          if (selectedPill) selectedPill.classList.toggle("hidden", count === 0);
+
+          if (selectAll) {
+            if (count === 0) {
+              selectAll.checked = false;
+              selectAll.indeterminate = false;
+            } else if (count === visible.length) {
+              selectAll.checked = true;
+              selectAll.indeterminate = false;
+            } else {
+              selectAll.checked = false;
+              selectAll.indeterminate = true;
+            }
+          }
+
+          setBulkActionsEnabled(count > 0);
+        };
+
+        const clearSelection = () => {
+          actionableCheckboxes.forEach((c) => (c.checked = false));
+          if (selectAll) {
+            selectAll.checked = false;
+            selectAll.indeterminate = false;
+          }
+          updateSelectedUI();
+        };
+
+        const setActivePill = (btn) => {
+          filterBtns.forEach((b) => {
+            const isActive = b === btn;
+            b.classList.toggle("active", isActive);
+            if (isActive) b.setAttribute("aria-current", "true");
+            else b.removeAttribute("aria-current");
+          });
+        };
+
+        const sortRows = () => {
+          if (!deficiencySortSelect || !tbody) return;
+          const sortVal = deficiencySortSelect.value;
+          const groups = rowGroups.slice();
+          groups.sort((a, b) => {
+            switch (sortVal) {
+              case "due-desc":
+                return (b.main.getAttribute("data-due-iso") || "9999").localeCompare(a.main.getAttribute("data-due-iso") || "9999");
+              case "status-asc":
+                return (a.main.getAttribute("data-status") || "").localeCompare(b.main.getAttribute("data-status") || "");
+              case "location-asc":
+                return (a.main.getAttribute("data-location") || "").localeCompare(b.main.getAttribute("data-location") || "");
+              default:
+                return (a.main.getAttribute("data-due-iso") || "9999").localeCompare(b.main.getAttribute("data-due-iso") || "9999");
+            }
+          });
+
+          groups.forEach((group) => {
+            tbody.appendChild(group.main);
+            if (group.detail) tbody.appendChild(group.detail);
+          });
+        };
+
+        const applyRowFilters = () => {
+          const q = normalize(issueSearch ? issueSearch.value : "");
+          rowGroups.forEach((group) => {
+            const matchesStatus =
+              activeStatusFilter === "all" || (group.main.getAttribute("data-status") || "") === activeStatusFilter;
+            const haystack = normalize(group.main.textContent + " " + (group.detail ? group.detail.textContent : ""));
+            const matchesSearch = !q || haystack.includes(q);
+            const show = matchesStatus && matchesSearch;
+            group.main.classList.toggle("hidden", !show);
+            syncDetailVisibility(group);
+          });
+          clearSelection();
+        };
+
+        document.addEventListener("click", (e) => {
+          const toggleBtn = e.target.closest(".issueExpandBtn");
+          if (toggleBtn) {
+            e.preventDefault();
+            const group = rowGroups.find((entry) => entry.toggle === toggleBtn);
+            if (group) setRowExpanded(group, group.main.getAttribute("data-expanded") !== "true");
+            return;
+          }
+
+          const criteriaBtn = e.target.closest("[data-criteria]");
+          if (criteriaBtn) {
+            e.preventDefault();
+            titleEl.textContent = criteriaBtn.getAttribute("data-criteria-title") || "Criteria";
+            standardEl.textContent = criteriaBtn.getAttribute("data-criteria-standard") || "";
+            const href = criteriaBtn.getAttribute("data-criteria-link") || "#";
+            linkEl.textContent = href;
+            linkEl.href = href;
+            showModal("#criteriaDialog");
+          }
+        });
+
+        document.addEventListener("click", (e) => {
+          const notesBtn = e.target.closest(".rejectionNotesBtn");
+          if (!notesBtn) return;
+          e.preventDefault();
+          if (rejectionNotesContent) {
+            rejectionNotesContent.textContent = notesBtn.getAttribute("data-rejection-notes") || "No notes provided.";
+          }
+          showModal("#rejectionNotesDialog");
+        });
+
+        if (openLetterModalBtn) openLetterModalBtn.addEventListener("click", (e) => (e.preventDefault(), showModal("#letterDialog")));
+        if (removeBtn) removeBtn.addEventListener("click", (e) => (e.preventDefault(), showModal("#removeProofDialog")));
+
+        const openUpload = (e) => {
+          e.preventDefault();
+          showModal("#uploadProofDialog");
+        };
+
+        if (uploadBtn) uploadBtn.addEventListener("click", openUpload);
+        if (uploadBtnMobile) uploadBtnMobile.addEventListener("click", openUpload);
+
+        if (selectAll) {
+          selectAll.addEventListener("change", () => {
+            const checked = selectAll.checked;
+            visibleActionableCheckboxes().forEach((c) => (c.checked = checked));
+            updateSelectedUI();
+          });
+        }
+
+        actionableCheckboxes.forEach((c) => c.addEventListener("change", updateSelectedUI));
+        if (clearSelectionLink) clearSelectionLink.addEventListener("click", (e) => (e.preventDefault(), clearSelection()));
+        if (clearSelectionLinkMobile) clearSelectionLinkMobile.addEventListener("click", (e) => (e.preventDefault(), clearSelection()));
+
+        applyScenario();
+        rowGroups.forEach((group) => setRowExpanded(group, false));
+        updateSelectedUI();
+
+        filterBtns.forEach((btn) =>
+          btn.addEventListener("click", () => {
+            activeStatusFilter = btn.getAttribute("data-filter") || "all";
+            setActivePill(btn);
+            applyRowFilters();
+          })
+        );
+
+        if (issueSearch) {
+          let t = null;
+          issueSearch.addEventListener("input", () => {
+            if (t) window.clearTimeout(t);
+            t = window.setTimeout(() => applyRowFilters(), 120);
+          });
+        }
+
+        if (deficiencySortSelect) deficiencySortSelect.addEventListener("change", sortRows);
+
+        const initialBtn = filterBtns.find((b) => b.getAttribute("data-filter") === "all") || filterBtns[0];
+        if (initialBtn) setActivePill(initialBtn);
+        sortRows();
+        applyRowFilters();
+
+        const clampLen = 90;
+        const notesEls = Array.from(document.querySelectorAll("#inspectionDetailBs2 .notesWrap[data-notes-full]"));
+        notesEls.forEach((node) => {
+          const full = (node.getAttribute("data-notes-full") || "").trim();
+          if (!full || full === "-") {
+            node.textContent = "-";
+            return;
+          }
+          if (full.length <= clampLen) {
+            node.textContent = full;
+            return;
+          }
+          const preview = full.slice(0, clampLen).trimEnd() + "...";
+          node.innerHTML =
+            '<span class="notesPreview">' +
+            preview +
+            '</span><span class="notesFull hidden">' +
+            full +
+            '</span><button type="button" class="btn btn-link btn-mini notesToggle">read more</button>';
+          const btn = node.querySelector(".notesToggle");
+          const previewEl = node.querySelector(".notesPreview");
+          const fullEl = node.querySelector(".notesFull");
+          btn.addEventListener("click", () => {
+            const expanded = !fullEl.classList.contains("hidden");
+            fullEl.classList.toggle("hidden", expanded);
+            previewEl.classList.toggle("hidden", !expanded);
+            btn.textContent = expanded ? "read more" : "Show less";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
